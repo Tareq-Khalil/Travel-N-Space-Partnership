@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Quest Competition Registration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --nebula-purple: #4A154B;
+            --stellar-blue: #0B1426;
+            --cosmic-gold: #FFD700;
+            --starlight-white: #F8F8FF;
+            --galaxy-pink: #FF69B4;
+            --deep-space: #0A0A0A;
+            --aurora-green: #00FF7F;
+            --comet-tail: #87CEEB;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--deep-space);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Enhanced Astronomical Background */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 50%, #1a1a3e 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, #2d1b69 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 80%, #0f3460 0%, transparent 50%),
+                linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
+            background-size: 800% 800%;
+            animation: nebulaFlow 30s ease infinite;
+            z-index: -4;
+        }
+
+        @keyframes nebulaFlow {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+        }
+
+        /* Twinkling Stars Layer */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--starlight-white);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star.small {
+            width: 1px;
+            height: 1px;
+            box-shadow: 0 0 3px var(--starlight-white);
+        }
+
+        .star.medium {
+            width: 2px;
+            height: 2px;
+            box-shadow: 0 0 6px var(--cosmic-gold);
+        }
+
+        .star.large {
+            width: 3px;
+            height: 3px;
+            box-shadow: 0 0 10px var(--comet-tail);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Moving Comet Trails */
+        .comet-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .comet {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--cosmic-gold);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 6px var(--cosmic-gold),
+                -20px 0 12px rgba(255, 215, 0, 0.3),
+                -40px 0 20px rgba(255, 215, 0, 0.1);
+            animation: cometMove 15s linear infinite;
+        }
+
+        .comet:nth-child(2) {
+            animation-delay: -5s;
+            background: var(--comet-tail);
+            box-shadow: 
+                0 0 6px var(--comet-tail),
+                -20px 0 12px rgba(135, 206, 235, 0.3),
+                -40px 0 20px rgba(135, 206, 235, 0.1);
+        }
+
+        .comet:nth-child(3) {
+            animation-delay: -10s;
+            background: var(--galaxy-pink);
+            box-shadow: 
+                0 0 6px var(--galaxy-pink),
+                -20px 0 12px rgba(255, 105, 180, 0.3),
+                -40px 0 20px rgba(255, 105, 180, 0.1);
+        }
+
+        @keyframes cometMove {
+            0% {
+                transform: translate(-100px, 150vh) rotate(-45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100vw, -150px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating particles - now more astronomical */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--aurora-green);
+            border-radius: 50%;
+            animation: floatUp 20s linear infinite;
+            box-shadow: 0 0 8px var(--aurora-green);
+        }
+
+        .particle:nth-child(even) {
+            background: var(--cosmic-gold);
+            box-shadow: 0 0 8px var(--cosmic-gold);
+        }
+
+        .particle:nth-child(3n) {
+            background: var(--comet-tail);
+            box-shadow: 0 0 8px var(--comet-tail);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+            position: relative;
+            padding: clamp(3rem, 10vw, 8rem) 0;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(400px, 80vw);
+            height: min(400px, 80vw);
+            background: radial-gradient(circle, var(--nebula-purple) 0%, rgba(74, 21, 75, 0.3) 40%, transparent 80%);
+            border-radius: 50%;
+            animation: pulsarBeam 6s ease-in-out infinite;
+        }
+
+        @keyframes pulsarBeam {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.4);
+                opacity: 0.6;
+            }
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--cosmic-gold), var(--comet-tail), var(--galaxy-pink), var(--starlight-white));
+            background-size: 400% 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            animation: stellarGlow 4s ease-in-out infinite, gradientShift 8s ease infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes stellarGlow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+            50% { filter: brightness(1.5) drop-shadow(0 0 30px rgba(255, 215, 0, 0.6)); }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+        }
+
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--starlight-white);
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: clamp(1px, 0.5vw, 2px);
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(248, 248, 255, 0.5);
+            padding: 0 1rem;
+        }
+
+        .form-container {
+            background: rgba(11, 20, 38, 0.15);
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(135, 206, 235, 0.2);
+            border-radius: clamp(20px, 4vw, 30px);
+            padding: clamp(2rem, 5vw, 4.5rem);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                inset 0 2px 0 rgba(248, 248, 255, 0.1),
+                0 0 100px rgba(135, 206, 235, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(255, 215, 0, 0.1) 90deg,
+                transparent 180deg,
+                rgba(135, 206, 235, 0.1) 270deg,
+                transparent 360deg
+            );
+            animation: stellarRotation 20s linear infinite;
+            z-index: -1;
+        }
+
+        .form-container::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: rgba(10, 10, 10, 0.95);
+            border-radius: calc(clamp(20px, 4vw, 30px) - 3px);
+            z-index: -1;
+        }
+
+        @keyframes stellarRotation {
+            100% { transform: rotate(360deg); }
+        }
+
+        .section {
+            margin-bottom: clamp(2rem, 5vw, 4.5rem);
+            background: rgba(11, 20, 38, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: clamp(15px, 3vw, 25px);
+            padding: clamp(1.5rem, 4vw, 3.5rem);
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '✨';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+            transition: left 1s ease;
+        }
+
+        .section:hover::before {
+            left: 100%;
+        }
+
+        .section:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--cosmic-gold);
+            box-shadow: 
+                0 25px 50px rgba(255, 215, 0, 0.2),
+                0 0 50px rgba(255, 215, 0, 0.1);
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--starlight-white);
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            display: flex;
+            align-items: center;
+            gap: clamp(0.5rem, 2vw, 1.5rem);
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(248, 248, 255, 0.3);
+            flex-wrap: wrap;
+        }
+
+        .section h2::before {
+            content: "✨";
+            font-size: 1.8em;
+            animation: stellarPulse 3s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes stellarPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(180deg); }
+        }
+
+        .optional-section {
+            border-color: rgba(255, 105, 180, 0.2);
+            opacity: 0.75;
+            transform: scale(0.97);
+        }
+
+        .optional-section h2::before {
+            content: "🪐";
+            animation: orbitSpin 4s linear infinite;
+        }
+
+        @keyframes orbitSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .optional-section.active {
+            opacity: 1;
+            transform: scale(1);
+            border-color: var(--galaxy-pink);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: clamp(1.2rem, 3vw, 2.5rem);
+        }
+
+        label {
+            display: block;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            font-weight: 600;
+            color: var(--starlight-white);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            letter-spacing: 0.8px;
+            text-shadow: 0 0 5px rgba(248, 248, 255, 0.2);
+        }
+
+        .required {
+            color: var(--galaxy-pink);
+            text-shadow: 0 0 8px var(--galaxy-pink);
+            animation: requiredGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes requiredGlow {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
+        }
+
+        input, select {
+            width: 100%;
+            padding: clamp(1rem, 3vw, 1.8rem) clamp(1.2rem, 3vw, 2.5rem);
+            background: rgba(11, 20, 38, 0.3);
+            border: 2px solid rgba(135, 206, 235, 0.3);
+            border-radius: clamp(10px, 2vw, 15px);
+            color: var(--starlight-white);
+            font-size: clamp(14px, 3vw, 16px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            min-height: 44px; /* Touch-friendly minimum */
+        }
+
+        input::placeholder {
+            color: rgba(248, 248, 255, 0.5);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--cosmic-gold);
+            box-shadow: 
+                0 0 25px rgba(255, 215, 0, 0.4),
+                inset 0 2px 0 rgba(248, 248, 255, 0.1);
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(11, 20, 38, 0.5);
+        }
+
+        select option {
+            background: var(--stellar-blue);
+            color: var(--starlight-white);
+            padding: 0.5rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1rem, 3vw, 2.5rem);
+        }
+
+        .toggle-member {
+            background: linear-gradient(45deg, var(--nebula-purple), var(--galaxy-pink));
+            color: var(--starlight-white);
+            border: none;
+            padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+            border-radius: clamp(20px, 4vw, 30px);
+            cursor: pointer;
+            font-size: clamp(13px, 3vw, 15px);
+            font-weight: 700;
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
+            width: 100%;
+            min-height: 44px; /* Touch-friendly */
+        }
+
+        .toggle-member::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(248, 248, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .toggle-member:hover::before,
+        .toggle-member:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .toggle-member:hover,
+        .toggle-member:active {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(74, 21, 75, 0.5);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--cosmic-gold), var(--galaxy-pink), var(--comet-tail), var(--aurora-green));
+            background-size: 300% 300%;
+            color: var(--deep-space);
+            border: none;
+            padding: clamp(1.2rem, 4vw, 2.2rem) clamp(2rem, 6vw, 6rem);
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 900;
+            border-radius: clamp(30px, 6vw, 50px);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: block;
+            margin: clamp(3rem, 6vw, 5rem) auto;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: clamp(1px, 0.3vw, 2px);
+            font-family: 'Orbitron', monospace;
+            animation: cosmicPulse 4s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            min-height: 56px; /* Touch-friendly */
+        }
+
+        @keyframes cosmicPulse {
+            0%, 100% { 
+                background-position: 0% 50%;
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            }
+            33% { 
+                background-position: 50% 0%;
+                box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            }
+            66% { 
+                background-position: 100% 50%;
+                box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
+            }
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(248, 248, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .submit-btn:hover::before,
+        .submit-btn:active::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover,
+        .submit-btn:active {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.5);
+        }
+
+        .submit-btn:disabled {
+            background: linear-gradient(45deg, #444, #666);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            animation: none;
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(0, 255, 127, 0.05);
+            border: 2px solid rgba(0, 255, 127, 0.3);
+            backdrop-filter: blur(25px);
+            color: var(--starlight-white);
+            padding: clamp(2rem, 5vw, 5rem);
+            text-align: center;
+            border-radius: clamp(15px, 3vw, 25px);
+            margin: clamp(2rem, 5vw, 4rem) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #0f2027, #2c5364);
+            border-radius: calc(clamp(15px, 3vw, 25px) + 3px);
+            z-index: -1;
+            animation: successGlow 3s linear infinite;
+        }
+
+        @keyframes successGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .success-message h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: successPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .success-message p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-links {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            justify-content: center;
+            align-items: center;
+            margin-top: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            text-decoration: none;
+            padding: clamp(1rem, 3vw, 1.8rem) clamp(1.5rem, 4vw, 3.5rem);
+            border-radius: clamp(20px, 4vw, 30px);
+            font-weight: 700;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0.5rem, 2vw, 1.2rem);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            min-height: 44px; /* Touch-friendly */
+        }
+
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .whatsapp-btn:hover::before,
+        .whatsapp-btn:active::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .whatsapp-btn:hover,
+        .whatsapp-btn:active {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: clamp(2rem, 5vw, 5rem);
+            color: var(--starlight-white);
+        }
+
+        .spinner {
+            width: clamp(60px, 12vw, 80px);
+            height: clamp(60px, 12vw, 80px);
+            border: 4px solid rgba(248, 248, 255, 0.1);
+            border-top: 4px solid var(--cosmic-gold);
+            border-radius: 50%;
+            animation: galaxySpin 1.2s linear infinite;
+            margin: 0 auto clamp(1rem, 3vw, 2.5rem);
+            position: relative;
+        }
+
+        .spinner::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--comet-tail);
+            border-radius: 50%;
+            animation: galaxySpin 1s linear infinite reverse;
+        }
+
+        .spinner::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--galaxy-pink);
+            border-radius: 50%;
+            animation: galaxySpin 0.8s linear infinite;
+        }
+
+        @keyframes galaxySpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced Responsive Breakpoints */
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .form-container {
+                margin: 0.5rem;
+                padding: 1.5rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+                padding: 0 0.5rem;
+            }
+            
+            input, select {
+                padding: 1rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .toggle-member {
+                font-size: 12px;
+                padding: 1rem 1.5rem;
+            }
+            
+            .submit-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .whatsapp-btn {
+                padding: 1rem 1.5rem;
+                font-size: 0.85rem;
+            }
+            
+            .success-message {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Medium mobile devices */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .form-container {
+                padding: 2.5rem;
+            }
+            
+            .section {
+                padding: 2rem;
+            }
+            
+            .whatsapp-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Tablets */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .two-column {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .form-container {
+                padding: 3rem;
+            }
+            
+            .section {
+                padding: 2.5rem;
+            }
+            
+            .whatsapp-links {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .whatsapp-btn {
+                min-width: 200px;
+            }
+        }
+
+        /* Large tablets and small laptops */
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .two-column {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .container {
+                padding: 2rem;
+            }
+            
+            .form-container {
+                padding: 4rem;
+            }
+            
+            .section {
+                padding: 3rem;
+            }
+            
+            .whatsapp-links {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1441px) {
+            .two-column {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .container {
+                max-width: 1200px;
+                padding: 2rem;
+            }
+            
+            .form-container {
+                padding: 4.5rem;
+            }
+            
+            .section {
+                padding: 3.5rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .section:hover {
+                transform: none;
+                border-color: rgba(255, 215, 0, 0.2);
+                box-shadow: none;
+            }
+            
+            .submit-btn:hover {
+                transform: none;
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            }
+            
+            .toggle-member:hover {
+                transform: none;
+                box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
+            }
+            
+            .whatsapp-btn:hover {
+                transform: none;
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            }
+            
+            /* Add active states for touch */
+            .section:active {
+                transform: scale(0.98);
+            }
+            
+            .submit-btn:active {
+                transform: scale(0.95);
+            }
+            
+            .toggle-member:active {
+                transform: scale(0.95);
+            }
+            
+            .whatsapp-btn:active {
+                transform: scale(0.95);
+            }
+            
+            input:focus, select:focus {
+                transform: none;
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .star {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .header {
+                padding: 2rem 0;
+            }
+            
+            .header::before {
+                width: min(200px, 40vw);
+                height: min(200px, 40vw);
+            }
+            
+            .header h1 {
+                font-size: clamp(1.5rem, 6vw, 3rem);
+            }
+            
+            .header p {
+                font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+            }
+            
+            .section {
+                margin-bottom: 2rem;
+                padding: 2rem;
+            }
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .cosmic-bg {
+                animation: none;
+                background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+            }
+            
+            .star {
+                animation: none;
+                opacity: 0.7;
+            }
+            
+            .comet {
+                animation: none;
+                display: none;
+            }
+            
+            .particle {
+                animation: none;
+                display: none;
+            }
+            
+            .header h1 {
+                animation: none;
+            }
+            
+            .submit-btn {
+                animation: none;
+                background: linear-gradient(45deg, var(--cosmic-gold), var(--galaxy-pink));
+            }
+            
+            .section::before {
+                transition: none;
+            }
+            
+            .form-container::before {
+                animation: none;
+            }
+            
+            .success-message::before {
+                animation: none;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .cosmic-bg,
+            .star-field,
+            .comet-container,
+            .particles {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .form-container {
+                background: white;
+                border: 2px solid black;
+                box-shadow: none;
+            }
+            
+            .section {
+                background: white;
+                border: 1px solid black;
+            }
+            
+            .header h1 {
+                color: black;
+                background: none;
+                -webkit-text-fill-color: black;
+            }
+            
+            .submit-btn,
+            .toggle-member,
+            .whatsapp-btn {
+                background: white;
+                color: black;
+                border: 2px solid black;
+            }
+        }
+
+        /* Custom scrollbar - enhanced for touch */
+        ::-webkit-scrollbar {
+            width: clamp(8px, 2vw, 12px);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(11, 20, 38, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--cosmic-gold), var(--comet-tail));
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--galaxy-pink), var(--aurora-green));
+        }
+
+        /* Focus indicators for accessibility */
+        input:focus-visible,
+        select:focus-visible,
+        button:focus-visible,
+        .whatsapp-btn:focus-visible {
+            outline: 3px solid var(--cosmic-gold);
+            outline-offset: 2px;
+        }
+
+        /* Enhanced loading state */
+        .loading p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-top: 1rem;
+        }
+
+        /* Form validation styles */
+        input:invalid {
+            border-color: var(--galaxy-pink);
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        }
+
+        input:valid {
+            border-color: var(--aurora-green);
+            box-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
+        }
+
+        /* Improved button accessibility */
+        .toggle-member:focus,
+        .submit-btn:focus,
+        .whatsapp-btn:focus {
+            outline: 3px solid var(--cosmic-gold);
+            outline-offset: 2px;
+        }
+
+        /* Better contrast for text */
+        label,
+        .section h2,
+        .header p,
+        .success-message p {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            input, select {
+                font-size: 16px; /* Prevents zoom on focus */
+                border-radius: 0; /* Removes iOS default styling */
+            }
+            
+            .submit-btn,
+            .toggle-member,
+            .whatsapp-btn {
+                -webkit-appearance: none;
+                border-radius: clamp(20px, 4vw, 30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg"></div>
+    
+    <!-- Star Field -->
+    <div class="star-field" id="starField"></div>
+    
+    <!-- Moving Comets -->
+    <div class="comet-container" id="cometContainer">
+        <div class="comet"></div>
+        <div class="comet"></div>
+        <div class="comet"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>COSMIC QUEST</h1>
+            <p>Journey Beyond the Stars • Compete Among Galaxies</p>
+        </div>
+
+        <div class="form-container">
+            <form id="registrationForm">
+                <!-- Team Information -->
+                <div class="section">
+                    <h2>Mission Command</h2>
+                    <div class="form-group">
+                        <label for="teamName">Team Name: <span class="required">*</span></label>
+                        <input type="text" id="teamName" name="teamName" required placeholder="Enter your cosmic team name">
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolName">School Name: <span class="required">*</span></label>
+                        <input type="text" id="schoolName" name="schoolName" required placeholder="Your educational institution">
+                    </div>
+                </div>
+
+                <!-- Member 1 (Required) -->
+                <div class="section">
+                    <h2>Commander</h2>
+                    <div class="form-group">
+                        <label for="member1Name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="member1Name" name="member1Name" required placeholder="Commander's full name">
+                    </div>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label for="member1Grade">Academic Level 2024-2025 <span class="required">*</span></label>
+                            <select id="member1Grade" name="member1Grade" required>
+                                <option value="">Select Grade</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="member1Birth">Birth Date <span class="required">*</span></label>
+                            <input type="date" id="member1Birth" name="member1Birth" required>
+                        </div>
+                    </div>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label for="member1Email">Gmail: <span class="required">*</span></label>
+                            <input type="email" id="member1Email" name="member1Email" required placeholder="commander@galaxy.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="member1Phone">Phone: <span class="required">*</span></label>
+                            <input type="tel" id="member1Phone" name="member1Phone" required placeholder="Example: +20 xxx xxx xxxx">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 (Optional) -->
+                <div class="section optional-section" id="member2Section">
+                    <button type="button" class="toggle-member" onclick="toggleMember(2)">+ Recruit Mission Member</button>
+                    <h2 style="display: none;">Member 2</h2>
+                    <div class="member-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="member2Name">Full Name</label>
+                            <input type="text" id="member2Name" name="member2Name" placeholder="Officer's full name">
+                        </div>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="member2Grade">Academic Level 2024-2025</label>
+                                <select id="member2Grade" name="member2Grade">
+                                    <option value="">Select Grade</option>
+                                    <option value="9">Grade 9</option>
+                                    <option value="10">Grade 10</option>
+                                    <option value="11">Grade 11</option>
+                                    <option value="12">Grade 12</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="member2Birth">Birth Date</label>
+                                <input type="date" id="member2Birth" name="member2Birth">
+                            </div>
+                        </div>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="member2Email">Gmail:</label>
+                                <input type="email" id="member2Email" name="member2Email" placeholder="officer@galaxy.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="member2Phone">Phone:</label>
+                                <input type="tel" id="member2Phone" name="member2Phone" placeholder="+20 xxx xxx xxxx">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 (Optional) -->
+                <div class="section optional-section" id="member3Section">
+                    <button type="button" class="toggle-member" onclick="toggleMember(3)">+ Recruit Mission Member</button>
+                    <h2 style="display: none;">Member 3</h2>
+                    <div class="member-fields" style="display: none;">
+                        <div class="form-group">
+                            <label for="member3Name">Full Name</label>
+                            <input type="text" id="member3Name" name="member3Name" placeholder="Specialist's full name">
+                        </div>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="member3Grade">Academic Level 2024-2025</label>
+                                <select id="member3Grade" name="member3Grade">
+                                    <option value="">Select Grade</option>
+                                    <option value="9">Grade 9</option>
+                                    <option value="10">Grade 10</option>
+                                    <option value="11">Grade 11</option>
+                                    <option value="12">Grade 12</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="member3Birth">Birth Date</label>
+                                <input type="date" id="member3Birth" name="member3Birth">
+                            </div>
+                        </div>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="member3Email">Gmail:</label>
+                                <input type="email" id="member3Email" name="member3Email" placeholder="specialist@galaxy.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="member3Phone">Phone:</label>
+                                <input type="tel" id="member3Phone" name="member3Phone" placeholder="+20 xxx xxx xxxx">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">LAUNCH MISSION</button>
+            </form>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Transmitting data across the cosmos...</p>
+            </div>
+            <div class="success-message" id="successMessage">
+                <h3>MISSION ACCEPTED!</h3>
+                <p>Welcome to the Cosmic Quest Competition, passionate explorers!</p>
+                <p>Your team has been successfully registered in our database.</p>
+                <p>Join our interstellar communication network:</p>
+                <div class="whatsapp-links">
+                    <a href="https://chat.whatsapp.com/YOUR_CHANNEL_LINK" class="whatsapp-btn" target="_blank">
+                        📢 WhatsApp Channel
+                    </a>
+                    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" class="whatsapp-btn" target="_blank">
+                        💬 Group Chat
+                    </a>
+                    <a href="proposal.html" class="whatsapp-btn" target="_blank">
+                        📋 Further Information
+                    </a>
+                </div>
+                <p style="margin-top: 25px; font-size: 0.95em; opacity: 0.9;">
+                    ⏳ Wait for our confirmation email.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create enhanced star field
+        function createStarField() {
+            const starField = document.getElementById('starField');
+            const starCount = window.innerWidth < 768 ? 100 : 200; // Fewer stars on mobile for performance
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Randomly assign star sizes
+                const size = Math.random();
+                if (size < 0.7) {
+                    star.classList.add('small');
+                } else if (size < 0.9) {
+                    star.classList.add('medium');
+                } else {
+                    star.classList.add('large');
+                }
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay for twinkling
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                
+                starField.appendChild(star);
+            }
+        }
+
+        // Create floating particles with astronomical theme
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 15 : 30; // Fewer particles on mobile
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                
+                // Random drift for more natural movement
+                particle.style.transform = `translateX(${(Math.random() - 0.5) * 100}px)`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize cosmic effects
+        createStarField();
+        createParticles();
+
+        // Recreate effects on resize for optimal performance
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                // Clear existing effects
+                document.getElementById('starField').innerHTML = '';
+                document.getElementById('particles').innerHTML = '';
+                
+                // Recreate with appropriate count
+                createStarField();
+                createParticles();
+            }, 250);
+        });
+
+        let member2Active = false;
+        let member3Active = false;
+
+        function toggleMember(memberNum) {
+            const section = document.getElementById(`member${memberNum}Section`);
+            const button = section.querySelector('.toggle-member');
+            const title = section.querySelector('h2');
+            const fields = section.querySelector('.member-fields');
+            
+            if (memberNum === 2) {
+                member2Active = !member2Active;
+                if (member2Active) {
+                    button.textContent = '- Dismiss Space Officer';
+                    button.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
+                    title.style.display = 'block';
+                    fields.style.display = 'block';
+                    section.classList.add('active');
+                    
+                    // Scroll to the newly opened section on mobile
+                    if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
+                    }
+                } else {
+                    button.textContent = '+ Recruit Space Officer';
+                    button.style.background = 'linear-gradient(45deg, var(--nebula-purple), var(--galaxy-pink))';
+                    title.style.display = 'none';
+                    fields.style.display = 'none';
+                    section.classList.remove('active');
+                    clearMemberFields(2);
+                }
+            } else if (memberNum === 3) {
+                member3Active = !member3Active;
+                if (member3Active) {
+                    button.textContent = '- Dismiss Mission Specialist';
+                    button.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
+                    title.style.display = 'block';
+                    fields.style.display = 'block';
+                    section.classList.add('active');
+                    
+                    // Scroll to the newly opened section on mobile
+                    if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
+                    }
+                } else {
+                    button.textContent = '+ Recruit Mission Specialist';
+                    button.style.background = 'linear-gradient(45deg, var(--nebula-purple), var(--galaxy-pink))';
+                    title.style.display = 'none';
+                    fields.style.display = 'none';
+                    section.classList.remove('active');
+                    clearMemberFields(3);
+                }
+            }
+        }
+
+        function clearMemberFields(memberNum) {
+            document.getElementById(`member${memberNum}Name`).value = '';
+            document.getElementById(`member${memberNum}Grade`).value = '';
+            document.getElementById(`member${memberNum}Birth`).value = '';
+            document.getElementById(`member${memberNum}Email`).value = '';
+            document.getElementById(`member${memberNum}Phone`).value = '';
+        }
+
+        // Enhanced form submission with cosmic effects
+        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Show loading with enhanced cosmic effect
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+            document.querySelector('.submit-btn').textContent = '🛸 TRANSMITTING...';
+            
+            // Scroll to loading on mobile
+            if (window.innerWidth < 768) {
+                document.getElementById('loading').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const registrationData = {};
+            
+            // Basic team info
+            registrationData.teamName = formData.get('teamName');
+            registrationData.schoolName = formData.get('schoolName');
+            registrationData.registrationDate = new Date().toISOString();
+            
+            // Member 1 (required)
+            registrationData.member1 = {
+                name: formData.get('member1Name'),
+                grade: formData.get('member1Grade'),
+                birthDate: formData.get('member1Birth'),
+                email: formData.get('member1Email'),
+                phone: formData.get('member1Phone')
+            };
+            
+            // Member 2 (optional)
+            if (member2Active && formData.get('member2Name')) {
+                registrationData.member2 = {
+                    name: formData.get('member2Name'),
+                    grade: formData.get('member2Grade'),
+                    birthDate: formData.get('member2Birth'),
+                    email: formData.get('member2Email'),
+                    phone: formData.get('member2Phone')
+                };
+            }
+            
+            // Member 3 (optional)
+            if (member3Active && formData.get('member3Name')) {
+                registrationData.member3 = {
+                    name: formData.get('member3Name'),
+                    grade: formData.get('member3Grade'),
+                    birthDate: formData.get('member3Birth'),
+                    email: formData.get('member3Email'),
+                    phone: formData.get('member3Phone')
+                };
+            }
+            
+            try {
+                // Create shooting stars effect during transmission (reduced on mobile)
+                if (window.innerWidth > 768) {
+                    createShootingStars();
+                }
+                
+                // Simulate API call (replace with your actual endpoint)
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Hide loading and form
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('registrationForm').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Create celebration constellation effect (reduced on mobile)
+                if (window.innerWidth > 768) {
+                    createCelebrationConstellation();
+                }
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+                
+            } catch (error) {
+                // Hide loading and show error
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+                document.querySelector('.submit-btn').textContent = '🚀 LAUNCH MISSION';
+                
+                // Show enhanced cosmic error message
+                showCosmicAlert('🛸 Transmission failed! Please check your cosmic connection and try again.');
+                console.error('Error:', error);
+            }
+        });
+
+        // Enhanced form validation with astronomical effects
+        document.querySelectorAll('input[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.style.borderColor = 'var(--galaxy-pink)';
+                    this.style.boxShadow = '0 0 20px rgba(255, 105, 180, 0.6)';
+                    if (window.innerWidth > 768) {
+                        createWarningStars(this);
+                    }
+                } else {
+                    this.style.borderColor = 'var(--cosmic-gold)';
+                    this.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.4)';
+                }
+            });
+            
+            field.addEventListener('input', function() {
+                if (this.value) {
+                    this.style.borderColor = 'var(--cosmic-gold)';
+                    this.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.4)';
+                }
+            });
+        });
+
+        // Enhanced hover effects with stellar animations (only for non-touch devices)
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.03)';
+                    createHoverStardust(this);
+                });
+                
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Enhanced typing effect with cosmic theme
+        function addCosmicTypingEffect() {
+            const inputs = document.querySelectorAll('input[placeholder]');
+            inputs.forEach(input => {
+                const originalPlaceholder = input.placeholder;
+                input.addEventListener('focus', function() {
+                    if (this.placeholder === originalPlaceholder) {
+                        this.placeholder = '';
+                        let i = 0;
+                        const typeInterval = setInterval(() => {
+                            this.placeholder += originalPlaceholder[i];
+                            i++;
+                            if (i >= originalPlaceholder.length) {
+                                clearInterval(typeInterval);
+                            }
+                        }, 60);
+                    }
+                });
+            });
+        }
+
+        addCosmicTypingEffect();
+
+        // Enhanced button effects with stellar glow (only for non-touch devices)
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('button, .whatsapp-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.filter = 'brightness(1.3) saturate(1.2)';
+                    if (window.innerWidth > 768) {
+                        createButtonStars(this);
+                    }
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.filter = 'brightness(1) saturate(1)';
+                });
+            });
+        }
+
+        // Enhanced parallax effect with multiple cosmic layers (reduced on mobile)
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.cosmic-bg');
+            const stars = document.getElementById('starField');
+            const comets = document.getElementById('cometContainer');
+            
+            // Reduce parallax effect on mobile for better performance
+            const factor = window.innerWidth < 768 ? 0.1 : 0.3;
+            
+            parallax.style.transform = `translateY(${scrolled * factor}px)`;
+            stars.style.transform = `translateY(${scrolled * (factor / 3)}px)`;
+            comets.style.transform = `translateY(${scrolled * (factor / 1.5)}px)`;
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Create shooting stars effect during form submission
+        function createShootingStars() {
+            const container = document.querySelector('.form-container');
+            const starCount = window.innerWidth < 768 ? 3 : 5;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = '3px';
+                star.style.height = '3px';
+                star.style.background = 'var(--cosmic-gold)';
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.boxShadow = '0 0 10px var(--cosmic-gold), -20px 0 20px rgba(255, 215, 0, 0.3)';
+                star.style.animation = `shootingStar 2s ease-out forwards`;
+                star.style.pointerEvents = 'none';
+                star.style.zIndex = '1000';
+                container.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 2000);
+            }
+        }
+
+        // Add shooting star animation
+        const shootingStarStyle = document.createElement('style');
+        shootingStarStyle.textContent = `
+            @keyframes shootingStar {
+                0% { 
+                    transform: translate(0, 0) scale(0); 
+                    opacity: 0; 
+                }
+                10% { 
+                    opacity: 1; 
+                    transform: scale(1); 
+                }
+                100% { 
+                    transform: translate(300px, 300px) scale(0); 
+                    opacity: 0; 
+                }
+            }
+        `;
+        document.head.appendChild(shootingStarStyle);
+
+        // Create celebration constellation effect
+        function createCelebrationConstellation() {
+            const container = document.querySelector('.success-message');
+            const starCount = window.innerWidth < 768 ? 15 : 25;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = '4px';
+                star.style.height = '4px';
+                star.style.background = ['var(--cosmic-gold)', 'var(--aurora-green)', 'var(--comet-tail)'][i % 3];
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animation = `celebrationTwinkle ${Math.random() * 2 + 2}s infinite`;
+                star.style.boxShadow = `0 0 15px ${star.style.background}`;
+                star.style.pointerEvents = 'none';
+                container.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 8000);
+            }
+        }
+
+        // Add celebration animation
+        const celebrationStyle = document.createElement('style');
+        celebrationStyle.textContent = `
+            @keyframes celebrationTwinkle {
+                0%, 100% { 
+                    opacity: 0.3; 
+                    transform: scale(1) rotate(0deg); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: scale(1.5) rotate(180deg); 
+                }
+            }
+        `;
+        document.head.appendChild(celebrationStyle);
+
+        // Create warning stars for invalid fields
+        function createWarningStars(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 3; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'fixed';
+                star.style.width = '2px';
+                star.style.height = '2px';
+                star.style.background = 'var(--galaxy-pink)';
+                star.style.borderRadius = '50%';
+                star.style.left = rect.left + Math.random() * rect.width + 'px';
+                star.style.top = rect.top + Math.random() * rect.height + 'px';
+                star.style.boxShadow = '0 0 8px var(--galaxy-pink)';
+                star.style.animation = 'warningPulse 1s ease-out forwards';
+                star.style.pointerEvents = 'none';
+                star.style.zIndex = '1000';
+                document.body.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 1000);
+            }
+        }
+
+        // Create hover stardust effect
+        function createHoverStardust(element) {
+            const rect = element.getBoundingClientRect();
+            const dustCount = window.innerWidth < 768 ? 4 : 8;
+            
+            for (let i = 0; i < dustCount; i++) {
+                const dust = document.createElement('div');
+                dust.style.position = 'fixed';
+                dust.style.width = '1px';
+                dust.style.height = '1px';
+                dust.style.background = 'var(--cosmic-gold)';
+                dust.style.borderRadius = '50%';
+                dust.style.left = rect.left + Math.random() * rect.width + 'px';
+                dust.style.top = rect.top + rect.height + 'px';
+                dust.style.boxShadow = '0 0 4px var(--cosmic-gold)';
+                dust.style.animation = 'stardustFloat 2s ease-out forwards';
+                dust.style.pointerEvents = 'none';
+                dust.style.zIndex = '999';
+                document.body.appendChild(dust);
+                
+                setTimeout(() => {
+                    dust.remove();
+                }, 2000);
+            }
+        }
+
+        // Create button stars effect
+        function createButtonStars(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'fixed';
+                star.style.width = '2px';
+                star.style.height = '2px';
+                star.style.background = 'var(--starlight-white)';
+                star.style.borderRadius = '50%';
+                star.style.left = rect.left + Math.random() * rect.width + 'px';
+                star.style.top = rect.top + Math.random() * rect.height + 'px';
+                star.style.boxShadow = '0 0 6px var(--starlight-white)';
+                star.style.animation = 'buttonSparkle 1s ease-out forwards';
+                star.style.pointerEvents = 'none';
+                star.style.zIndex = '1000';
+                document.body.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 1000);
+            }
+        }
+
+        // Add additional animation styles
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+            @keyframes warningPulse {
+                0% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1.5); }
+                100% { opacity: 0; transform: scale(0) translateY(-20px); }
+            }
+            
+            @keyframes stardustFloat {
+                0% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-50px) scale(0); }
+            }
+            
+            @keyframes buttonSparkle {
+                0% { opacity: 0; transform: scale(0) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+                100% { opacity: 0; transform: scale(0) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(additionalStyles);
+
+        // Custom cosmic alert function
+        function showCosmicAlert(message) {
+            const alert = document.createElement('div');
+            alert.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(11, 20, 38, 0.95);
+                border: 2px solid var(--galaxy-pink);
+                border-radius: 20px;
+                padding: clamp(1.5rem, 4vw, 3rem);
+                color: var(--starlight-white);
+                font-size: clamp(1rem, 3vw, 1.1rem);
+                text-align: center;
+                z-index: 10000;
+                backdrop-filter: blur(20px);
+                box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+                animation: alertAppear 0.5s ease-out;
+                max-width: 90vw;
+                word-wrap: break-word;
+            `;
+            alert.textContent = message;
+            
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.style.animation = 'alertDisappear 0.5s ease-in forwards';
+                setTimeout(() => alert.remove(), 500);
+            }, 3000);
+        }
+
+        // Add alert animations
+        const alertStyles = document.createElement('style');
+        alertStyles.textContent = `
+            @keyframes alertAppear {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+                100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            }
+            
+            @keyframes alertDisappear {
+                0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            }
+        `;
+        document.head.appendChild(alertStyles);
+
+        // Form validation improvements
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--galaxy-pink)';
+                    field.style.boxShadow = '0 0 20px rgba(255, 105, 180, 0.6)';
+                    isValid = false;
+                    
+                    // Scroll to first invalid field on mobile
+                    if (window.innerWidth < 768 && isValid === false) {
+                        field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else {
+                    field.style.borderColor = 'var(--cosmic-gold)';
+                    field.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.4)';
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Phone validation
+        function validatePhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            return phoneRegex.test(phone.replace(/\s/g, ''));
+        }
+
+        // Enhanced form validation on submit
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                showCosmicAlert('⚠️ Please fill in all required fields to continue your cosmic journey!');
+                return;
+            }
+            
+            // Validate email
+            const email = document.getElementById('member1Email').value;
+            if (!validateEmail(email)) {
+                showCosmicAlert('📧 Please enter a valid email address for the commander!');
+                document.getElementById('member1Email').focus();
+                return;
+            }
+            
+            // Validate phone
+            const phone = document.getElementById('member1Phone').value;
+            if (!validatePhone(phone)) {
+                showCosmicAlert('📱 Please enter a valid phone number for the commander!');
+                document.getElementById('member1Phone').focus();
+                return;
+            }
+            
+            // If all validation passes, proceed with form submission
+            submitForm();
+        });
+
+        // Separate submit function for cleaner code
+        async function submitForm() {
+            // Show loading with enhanced cosmic effect
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+            document.querySelector('.submit-btn').textContent = '🛸 TRANSMITTING...';
+            
+            // Scroll to loading on mobile
+            if (window.innerWidth < 768) {
+                document.getElementById('loading').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Collect form data
+            const formData = new FormData(document.getElementById('registrationForm'));
+            const registrationData = {};
+            
+            // Basic team info
+            registrationData.teamName = formData.get('teamName');
+            registrationData.schoolName = formData.get('schoolName');
+            registrationData.registrationDate = new Date().toISOString();
+            
+            // Member 1 (required)
+            registrationData.member1 = {
+                name: formData.get('member1Name'),
+                grade: formData.get('member1Grade'),
+                birthDate: formData.get('member1Birth'),
+                email: formData.get('member1Email'),
+                phone: formData.get('member1Phone')
+            };
+            
+            // Member 2 (optional)
+            if (member2Active && formData.get('member2Name')) {
+                registrationData.member2 = {
+                    name: formData.get('member2Name'),
+                    grade: formData.get('member2Grade'),
+                    birthDate: formData.get('member2Birth'),
+                    email: formData.get('member2Email'),
+                    phone: formData.get('member2Phone')
+                };
+            }
+            
+            // Member 3 (optional)
+            if (member3Active && formData.get('member3Name')) {
+                registrationData.member3 = {
+                    name: formData.get('member3Name'),
+                    grade: formData.get('member3Grade'),
+                    birthDate: formData.get('member3Birth'),
+                    email: formData.get('member3Email'),
+                    phone: formData.get('member3Phone')
+                };
+            }
+            
+            try {
+                // Create shooting stars effect during transmission (reduced on mobile)
+                if (window.innerWidth > 768) {
+                    createShootingStars();
+                }
+                
+                // Simulate API call (replace with your actual endpoint)
+                // const response = await fetch('register.php', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(registrationData)
+                // });
+                
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // if (response.ok) {
+                    // Hide loading and form
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('registrationForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Create celebration constellation effect (reduced on mobile)
+                    if (window.innerWidth > 768) {
+                        createCelebrationConstellation();
+                    }
+                    
+                    // Scroll to success message
+                    document.getElementById('successMessage').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                // } else {
+                //     throw new Error('Mission transmission failed');
+                // }
+                
+            } catch (error) {
+                // Hide loading and show error
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+                document.querySelector('.submit-btn').textContent = '🚀 LAUNCH MISSION';
+                
+                // Show enhanced cosmic error message
+                showCosmicAlert('🛸 Transmission failed! Please check your cosmic connection and try again.');
+                console.error('Error:', error);
+            }
+        }
+
+        // Initialize all cosmic effects
+        setTimeout(() => {
+            document.body.classList.add('cosmic-loaded');
+        }, 1000);
+
+        // Prevent zoom on double tap for iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                // Recalculate star field and particles
+                document.getElementById('starField').innerHTML = '';
+                document.getElementById('particles').innerHTML = '';
+                createStarField();
+                createParticles();
+            }, 500);
+        });
+
+        // Optimize performance on low-end devices
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) {
+            // Reduce animations for low-end devices
+            const style = document.createElement('style');
+            style.textContent = `
+                .cosmic-bg { animation-duration: 60s; }
+                .star { animation-duration: 6s; }
+                .particle { animation-duration: 40s; }
+                .comet { animation-duration: 30s; }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('toggle-member')) {
+                e.target.click();
+            }
+        });
+
+        // Auto-save form data to prevent loss (using memory only)
+        let formBackup = {};
+        
+        function backupFormData() {
+            const formData = new FormData(document.getElementById('registrationForm'));
+            formBackup = Object.fromEntries(formData);
+        }
+        
+        function restoreFormData() {
+            Object.keys(formBackup).forEach(key => {
+                const field = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+                if (field && formBackup[key]) {
+                    field.value = formBackup[key];
+                }
+            });
+        }
+        
+        // Backup form data every 30 seconds
+        setInterval(backupFormData, 30000);
+        
+        // Backup on page unload
+        window.addEventListener('beforeunload', backupFormData);
+        
+        // Restore on page load
+        window.addEventListener('load', restoreFormData);
+
+        // Add visual feedback for touch interactions
+        function addTouchFeedback(element) {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+                this.style.opacity = '0.8';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = '';
+                this.style.opacity = '';
+            });
+        }
+
+        // Apply touch feedback to interactive elements
+        document.querySelectorAll('button, .whatsapp-btn, input, select').forEach(addTouchFeedback);
+
+        console.log('🚀 Cosmic Quest Registration System Initialized');
+        console.log('🌟 May your journey among the stars be successful!');
+    </script>
+</body>
+</html>

@@ -1,0 +1,1091 @@
+<!doctype html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta charset="utf-8">
+    <style>
+        .js #features {
+            margin-left: -12000px; width: 100%; 
+        }
+        
+        /* Space Mouse Effect Styles */
+        #space-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3a 50%, #2d1b69 100%);
+        }
+        
+        body {
+            background: transparent;
+            font-family: 'News Cycle', Arial, sans-serif;
+        }
+        
+        #container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Enhance the book appearance */
+        #features {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Make navigation more visible */
+        nav {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            list-style: none;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Enhanced typography and spacing */
+        .feature {
+            padding: 20px !important;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 580px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.1);
+        }
+
+        .feature h1 {
+            font-size: 2.2rem !important;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .feature h2 {
+            font-size: 1.6rem !important;
+            color: #717bef !important;
+            margin: 15px 0 10px 0;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .feature h3 {
+            font-size: 1.3rem !important;
+            color: #55c3c3 !important;
+            margin: 12px 0 8px 0;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+
+        .feature p {
+            font-size: 1rem !important;
+            margin-bottom: 10px;
+            text-align: justify;
+            color: #f0f8ff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature .subtitle {
+            font-size: 1.2rem !important;
+            color: #73c3ed !important;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Table of Contents Styles */
+        .toc-container {
+            background: rgba(13, 13, 39, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid rgba(103, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-height: 450px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .toc-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .toc-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .toc-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, rgba(103, 126, 234, 0.6), rgba(118, 75, 162, 0.6));
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toc-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, rgba(103, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+        }
+
+        .toc-container {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(103, 126, 234, 0.6) rgba(255, 255, 255, 0.1);
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-item {
+            margin: 0 0 12px 0;
+            padding: 0;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(103, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .toc-link:hover {
+            background: linear-gradient(135deg, rgba(103, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(103, 126, 234, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .toc-page-number {
+            float: right;
+            color: #8b9ff9;
+            font-weight: 600;
+        }
+
+        .toc-description {
+            font-size: 0.9rem;
+            color: #b8c5f2;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Partnership highlight boxes */
+        .partnership-highlight {
+            background: rgba(102, 126, 234, 0.2);
+            border-left: 4px solid #667eea;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            backdrop-filter: blur(5px);
+        }
+
+        .achievement-box {
+            background: rgba(255, 107, 107, 0.3);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .opportunity-box {
+            background: rgba(168, 230, 207, 0.2);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid rgba(95, 158, 160, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .vision-box {
+            background: rgba(25, 84, 123, 0.3);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Enhanced list styling */
+        .feature ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 8px 0;
+        }
+
+        .feature ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 6px;
+            font-size: 1rem;
+            color: #f0f8ff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature ul li:before {
+            content: "★";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #717bef;
+        }
+
+        /* Contact styling */
+        .contact-card {
+            background: rgba(13, 13, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid rgba(103, 126, 234, 0.4);
+            text-align: center;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        .email-link {
+            color: #73c3ed;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .website-link {
+            color: #55c3c3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+            
+            nav a {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .feature {
+                padding: 15px !important;
+                min-height: 500px;
+            }
+            
+            .feature h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .toc-container {
+                padding: 15px;
+                margin: 15px 0;
+                max-height: 350px;
+            }
+            
+            .toc-link {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SOAC x Travel N Space Partnership Proposal</title>
+    <meta name="description" content="Strategic Partnership Proposal between STEM October Astronomy Club and Travel N Space">
+    <meta name="author" content="STEM October Astronomy Club">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wow_book.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/preview.css">
+    <link href='//fonts.googleapis.com/css?family=News+Cycle:400,700|Orbitron:400,700,900' rel='stylesheet' type='text/css'>
+    
+    <script src="js/modernizr-1.6.min.js"></script>
+</head>
+
+<body>
+<!-- Space Mouse Effect Canvas -->
+<canvas id="space-canvas"></canvas>
+
+<div id="container">
+<nav>
+    <ul>
+        <li><a id='first' href="#" title='goto first page'>First page</a></li>
+        <li><a id='back' href="#" title='go back one page'>Back</a></li>
+        <li><a id='next' href="#" title='go foward one page'>Next</a></li>
+        <li><a id='last' href="#" title='goto last page'>last page</a></li>
+        <li><a id='zoomin' href="#" title='zoom in'>Zoom In</a></li>
+        <li><a id='zoomout' href="#" title='zoom out'>Zoom Out</a></li>
+        <li><a id='slideshow' href="#" title='start slideshow'>Slide Show</a></li>
+        <li><a id='flipsound' href="#" title='flip sound on/off'>Flip sound</a></li>
+        <li><a id='fullscreen' href="#" title='fullscreen on/off'>Fullscreen</a></li>
+        <li><a id='thumbs' href="#" title='thumbnails on/off'>Thumbs</a></li>
+    </ul>
+</nav>
+
+<div id="main">
+    <img id='click_to_open' src="images/click_to_open.png" alt='click to open' />
+    <div id='features'>
+        <div id='cover'></div>
+        
+        <!-- Title Page -->
+        <div class='feature pagefx hardpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <div style="text-align: center; padding: 40px 20px;">
+                <div class='subtitle'>Strategic Partnership Proposal</div>
+                <h1 style="font-size: 2.8rem !important; margin: 30px 0; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SOAC × Travel N Space</h1>
+                <p style="font-size: 1.3rem; margin-top: 30px; color: #73c3ed;">Expanding Astronomy Outreach Through Strategic Partnership</p>
+                <div class="vision-box" style="margin-top: 40px;">
+                    <div style="font-size: 1.1rem;">Combining Passion with Professional Expertise</div>
+                    <div style="font-size: 1.5rem; margin-top: 10px; color: #55c3c3;">Making Astronomy Accessible Across Borders</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1 style="margin-top: 0px !important;">Partnership Overview</h1>
+            <div class='subtitle' style="margin-bottom: 20px;">Navigate Through Our Proposal</div>
+            
+            <div class="toc-container">
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="3">
+                            Executive Summary
+                            <span class="toc-page-number">Page 3</span>
+                            <div class="toc-description">Partnership vision & objectives</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="4">
+                            About SOAC
+                            <span class="toc-page-number">Page 4</span>
+                            <div class="toc-description">Student-led astronomy initiative</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="5">
+                            Our Achievements
+                            <span class="toc-page-number">Page 5</span>
+                            <div class="toc-description">Milestones & recognition</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="6">
+                            Partnership Vision
+                            <span class="toc-page-number">Page 6</span>
+                            <div class="toc-description">Synergy opportunities</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="7">
+                            Collaboration Areas
+                            <span class="toc-page-number">Page 7</span>
+                            <div class="toc-description">Stargazing & tourism</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="8">
+                            Educational Programs
+                            <span class="toc-page-number">Page 8</span>
+                            <div class="toc-description">Courses & workshops</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="9">
+                            Why Partner with SOAC
+                            <span class="toc-page-number">Page 9</span>
+                            <div class="toc-description">Benefits & value proposition</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="10">
+                            Next Steps
+                            <span class="toc-page-number">Page 10</span>
+                            <div class="toc-description">Implementation roadmap</div>
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#" class="toc-link" data-page="11">
+                            Contact Information
+                            <span class="toc-page-number">Page 11</span>
+                            <div class="toc-description">Get in touch</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Executive Summary</h1>
+            <div class="partnership-highlight" style="padding-bottom: 0px; margin-bottom: 0px;">
+                <p><strong>This proposal outlines a strategic partnership between STEM October Astronomy Club (SOAC), a youth-led astronomy initiative in Egypt, and Travel N Space (TNST), the UAE's leading provider of mobile astronomy and space experiences.</strong></p>
+            </div>
+            
+            <h2 style="padding: 0px; margin: 0px;">Partnership Vision</h2>
+            <p>By combining SOAC's passion-driven grassroots community with TNST's professional expertise and innovative space offerings, this partnership aims to expand astronomy outreach in Egypt and the region.</p>
+            
+            <div class="opportunity-box" >
+                <h3>What We'll Create Together:</h3>
+                <ul style="padding: 0px; margin: 0px;">
+                    <li>Unique stargazing experiences</li>
+                    <li>Educational workshops and courses</li>
+                    <li>International collaborations</li>
+                    <li>Cross-border astronomical events</li>
+                </ul>
+            </div>
+            
+            <div class="vision-box">
+                <p><strong>Together, we envision making astronomy accessible, inspiring, and engaging for students, families, and enthusiasts across borders.</strong></p>
+            </div>
+        </div>
+
+        <!-- About SOAC -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;padding: 0px; margin: 0px;">
+            <h1>About STEM October Astronomy Club</h1>
+            <div class='subtitle'>Student-Led Excellence in Astronomy Education</div>
+            
+            <div class="partnership-highlight" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Our Mission</h2>
+                <p style="padding: 0px; margin: 0px;">We are STEM October Astronomy Club (SOAC), a high-school student-led astronomy initiative based in Egypt. Our mission is to spark curiosity, inspire young learners, and make astronomy accessible through education, events, and practical exploration.</p>
+            </div>
+            
+            <h2 style="padding: 0px; margin: 0px;">What Makes Us Unique</h2>
+            <div class="opportunity-box">
+                <ul style="padding: 0px; margin: 0px;">
+                    <li ><strong>Student Leadership:</strong> Founded and led entirely by passionate students</li>
+                    <li ><strong>International Recognition:</strong> Members recognized in international Olympiads</li>
+                    <li ><strong>Practical Experience:</strong> Hands-on workshops and real astronomical observations</li>
+                    <li ><strong>Educational Focus:</strong> Delivering structured astronomy courses within our community</li>
+                </ul>
+            </div>
+            
+            <div class="achievement-box">
+                <p style="padding: 0px; margin: 0px;"><strong>Notable Achievement:</strong> First Arab student to win a silver medal at the Open World Astronomy Olympiad in Russia</p>
+            </div>
+        </div>
+
+        <!-- Our Achievements -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Our Key Achievements</h1>
+            <div class='subtitle'>Building Excellence in Astronomy Education</div>
+            
+            <div class="achievement-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Educational Programs</h2>
+                <p>Delivered comprehensive offline astronomy and astrophysics courses within our school community</p>
+            </div>
+            
+            <div class="partnership-highlight" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Practical Workshops & Events</h2>
+                <ul>
+                    <li>International Search for Asteroids (ISAC) campaigns</li>
+                    <li>Astrophotography workshops</li>
+                    <li>Public stargazing sessions</li>
+                    <li>Educational outreach programs</li>
+                </ul>
+            </div>
+            
+            <div class="opportunity-box" >
+                <h2 style="padding: 0px; margin: 0px;">Equipment & Infrastructure</h2>
+                <p style="padding: 0px; margin: 0px;">Secured two telescopes including a 7-inch telescope built in-house (currently near completion)</p>
+            </div>
+            
+            <div class="vision-box" >
+                <h2 style="padding: 0px; margin: 0px;">COSMIC QUEST Success</h2>
+                <p style="padding: 0px; margin: 0px;"><strong>Launched our international astronomy and astrophysics competition, attracting 500+ participants from 27+ countries</strong></p>
+            </div>
+        </div>
+
+        <!-- Partnership Vision -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Our Vision for Partnership</h1>
+            <div class='subtitle'>Synergy Between Passion and Professionalism</div>
+            
+            <div class="partnership-highlight">
+                <p style="padding: 0px; margin: 0px;">We are deeply inspired by Travel N Space's mission to make astronomy engaging, mobile, and accessible through immersive experiences. We see strong synergy between SOAC and Travel N Space, particularly as you explore expansion into Egypt and beyond.</p>
+            </div>
+            
+            <h2 style="padding: 0px; margin: 0px;">Strategic Alignment</h2>
+            <div class="opportunity-box">
+                <ul style="padding: 0px; margin: 0px;">
+                    <li><strong>Shared Vision:</strong> Making astronomy accessible to everyone</li>
+                    <li><strong>Complementary Strengths:</strong> Youth energy meets professional expertise</li>
+                    <li><strong>Geographic Expansion:</strong> Egypt as gateway to North Africa</li>
+                    <li><strong>Educational Impact:</strong> Reaching students across borders</li>
+                </ul>
+            </div>
+            
+            <div class="vision-box">
+                <h2 style="padding: 0px; margin: 0px;">Partnership Benefits</h2>
+                <p>Together, we can bring Travel N Space's immersive astronomy experiences to Egypt while building a stronger global presence in astronomy education.</p>
+            </div>
+        </div>
+
+        <!-- Collaboration Areas - Stargazing -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Stargazing & Astronomy Tourism</h1>
+            <div class='subtitle'>Bringing the Universe to Egypt</div>
+            
+            <div class="partnership-highlight">
+                <h2 style="padding: 0px; margin: 0px;">Equipment & Expertise</h2>
+                <p style="padding: 0px; margin: 0px;">Use our 8-inch telescope and other equipment to co-host stargazing nights and astronomy-themed events under Travel N Space branding</p>
+            </div>
+            
+            <div class="opportunity-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Event Organization</h2>
+                <ul style="padding: 0px; margin: 0px;">
+                    <li>School-based astronomy nights</li>
+                    <li>Public outreach sessions</li>
+                    <li>Youth-led volunteer teams ensuring smooth event delivery</li>
+                    <li>Professional event management and coordination</li>
+                </ul>
+            </div>
+            
+            <div class="achievement-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Target Locations</h2>
+                <p style="padding: 0px; margin: 0px;"><strong>Egypt's Dark Sky Locations:</strong> Perfect for stargazing experiences and astronomy tourism development</p>
+            </div>
+            
+            <div class="vision-box">
+                <h2 style="padding: 0px; margin: 0px;">Expansion Potential</h2>
+                <p style="padding: 0px; margin: 0px;">Collaborate on Travel N Space events both within Egypt and internationally, creating a network of astronomy experiences</p>
+            </div>
+        </div>
+
+        <!-- Educational Programs -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Educational Courses & Workshops</h1>
+            <div class='subtitle'>World-Class Astronomy Education</div>
+            
+            <div class="partnership-highlight" >
+                <h2 style="padding: 0px; margin: 0px;">Course Delivery</h2>
+                <p style="padding: 0px; margin: 0px;">Deliver comprehensive astronomy and astrophysics courses (beginner to advanced), supported by our Olympiad-level expertise and teaching experience</p>
+            </div>
+
+            <div class="opportunity-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Practical Workshops</h2>
+                <ul style="padding: 0px; margin: 0px;">
+                    <li ><strong>Astrophotography:</strong> Capture the beauty of the cosmos</li>
+                    <li><strong>Asteroid Detection:</strong> Real scientific contribution</li>
+                    <li><strong>Telescope Usage:</strong> Hands-on observational skills</li>
+                    <li><strong>Data Analysis:</strong> Scientific methodology</li>
+                </ul>
+            </div>
+            
+            <div class="achievement-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Target Audience</h2>
+                <p style="padding: 0px; margin: 0px;">Engage schools, universities, and youth communities across Egypt and the region</p>
+            </div>
+            
+            <div class="vision-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Quality Assurance</h2>
+                <p style="padding: 0px; margin: 0px;">All programs backed by international competition experience and proven educational methodology</p>
+            </div>
+        </div>
+
+        <!-- Why Partner with SOAC -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Why Partner with SOAC</h1>
+            <div class='subtitle'>Unique Value Proposition</div>
+            
+            <div class="partnership-highlight">
+                <h2 style="padding: 0px; margin: 0px;">Youth-Led & Authentic</h2>
+                <p style="padding: 0px; margin: 0px;">A team of passionate students directly engaging peers and younger generations with authentic enthusiasm</p>
+            </div>
+            
+            <div class="achievement-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Proven Track Record</h2>
+                <p style="padding: 0px; margin: 0px;">Delivered workshops, built telescopes, and created international competitions within one year of operation</p>
+            </div>
+            
+            <div class="opportunity-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Technical Capabilities</h2>
+                <ul style="padding: 0px; margin: 0px;">
+                    <li>Web development and digital platforms</li>
+                    <li>Game development for educational tools</li>
+                    <li>Video production and content creation</li>
+                    <li>2D & 3D animation for educational materials</li>
+                    <li>Scientific expertise at Olympiad level</li>
+                </ul>
+            </div>
+            
+            <div class="vision-box" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Marketing & Outreach</h2>
+                <p style="padding: 0px; margin: 0px;"><strong>Promote Travel N Space through our growing networks:</strong> 500+ participants across 27+ countries, expanding student networks, and educational institutions</p>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1>Proposed Next Steps</h1>
+            <div class='subtitle'>Implementation Roadmap</div>
+            
+            <div class="achievement-box">
+                <h2 style="padding: 0px; margin: 0px;">Phase 1: Initial Collaboration</h2>
+                <p>Arrange an initial meeting to discuss pilot collaboration opportunities (e.g., co-hosting a stargazing night in Egypt)</p>
+            </div>
+            
+            <div class="opportunity-box">
+                <h2 style="padding: 0px; margin: 0px;">Phase 2: Strategic Planning</h2>
+                <ul>
+                    <li>Explore long-term collaboration in workshops and events</li>
+                    <li>Define partnership models and operational frameworks</li>
+                    <li>Establish joint marketing and branding strategies</li>
+                </ul>
+            </div>
+            
+            <div class="partnership-highlight">
+                <h2 style="padding: 0px; margin: 0px;">Phase 3: Implementation</h2>
+                <ul>
+                    <li>Co-branded events and educational initiatives</li>
+                    <li>Shared educational resources and content development</li>
+                    <li>Joint expansion planning for regional markets</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Contact Information -->
+        <div class='feature pagefx softpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <h1 >Contact Information</h1>
+            <div class='subtitle' style="padding: 0px; margin: 0px;">Let's Start This Journey Together</div>
+            
+            <div class="contact-card" style="padding: 0px; margin: 0px;">
+                <h2 style="padding: 0px; margin: 0px;">Farouk Diab</h2>
+                <h3 style="color: #73c3ed;padding: 0px; margin: 0px;">President, STEM October Astronomy Club (SOAC)</h3>
+                <div class="contact-info">
+                    <p style="padding: 0px; margin: 0px;">📧 <a href="mailto:farouk@soac.club" class="email-link">farouk@soac.club</a></p>
+                    <p style="padding: 0px; margin: 0px;">🌐 <a href="https://soac.club" class="website-link">soac.club</a></p>
+                </div>
+            </div>
+            
+            <div class="partnership-highlight">
+                <h2 style="padding: 0px; margin: 0px;">SOAC Team Capabilities</h2>
+                <ul>
+                    <li><strong>Web Development:</strong> Modern digital platforms and tools</li>
+                    <li><strong>Game Development:</strong> Interactive educational experiences</li>
+                    <li><strong>Video Editing:</strong> Professional content production</li>
+                    <li><strong>2D & 3D Animation:</strong> Engaging visual content</li>
+                    <li><strong>International Olympiad-level Expertise:</strong> World-class astronomy knowledge</li>
+                </ul>
+            </div>
+            
+            <div class="achievement-box">
+                <h2 style="padding: 0px; margin: 0px;">Ready to Connect</h2>
+                <p style="padding: 0px; margin: 0px;">We're excited to discuss how SOAC and Travel N Space can create extraordinary astronomy experiences together</p>
+            </div>
+        </div>
+
+        <!-- Final Call to Action -->
+        <div class='feature pagefx hardpage' style="background-image: url(images/image.png); background-repeat: no-repeat; background-size: cover;">
+            <div style="text-align: center; padding: 60px 20px;">
+                <h1 style="font-size: 2.5rem !important; background: linear-gradient(45deg, #e8ff64, #fcec38); -webkit-background-clip: text; -webkit-text-fill-color: transparent;padding: 0px; margin: 0px;">Together, We Reach for the Stars</h1>
+                
+                <div class="vision-box" style="margin: 40px 0;">
+                    <p style="font-size: 1.4rem; font-style: italic;">
+                        "The partnership between SOAC and Travel N Space represents more than collaboration—it's a fusion of passionate youth energy with professional excellence, creating unprecedented opportunities in astronomy education and outreach."
+                    </p>
+                </div>
+                
+                <div class="partnership-highlight" style="padding: 0px; margin: 0px;">
+                    <h2 style="color: #55c3c3;padding: 0px; margin: 0px;">Our Shared Vision</h2>
+                    <ul style="text-align: left; display: inline-block;">
+                        <li>Expand astronomy accessibility across Egypt and the region</li>
+                        <li>Create memorable stargazing and educational experiences</li>
+                        <li>Foster international collaboration in space education</li>
+                        <li>Inspire the next generation of astronomers and scientists</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class='last_cover'>
+            <img src="image.png" width="100%" height="100%" />
+        </div>
+
+    </div> <!-- features -->
+
+</div>
+<div id='thumbs_holder'>
+</div>
+<footer>
+
+</footer>
+</div> <!--! end of #container -->
+
+<!-- Javascript at the bottom for fast page loading -->
+
+<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="./js/libs/jquery-1.9.1.min.js"%3E%3C/script%3E'))</script>
+
+<script type="text/javascript" src="wow_book.min.js"></script>
+
+<!-- Space Mouse Effect Script -->
+<script>
+class SpaceMouseEffect {
+    constructor() {
+        this.canvas = document.getElementById('space-canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.stars = [];
+        this.mouse = { x: 0, y: 0 };
+        this.particles = [];
+        
+        this.init();
+        this.bindEvents();
+        this.animate();
+    }
+    
+    init() {
+        this.resize();
+        this.createStars();
+        this.createParticles();
+    }
+    
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+    
+    createStars() {
+        this.stars = [];
+        const starCount = Math.floor((this.canvas.width * this.canvas.height) / 4000);
+        
+        for (let i = 0; i < starCount; i++) {
+            this.stars.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                radius: Math.random() * 2 + 0.5,
+                opacity: Math.random() * 0.8 + 0.2,
+                twinkle: Math.random() * 0.02 + 0.01,
+                originalX: 0,
+                originalY: 0,
+                speed: Math.random() * 0.5 + 0.1
+            });
+            
+            this.stars[i].originalX = this.stars[i].x;
+            this.stars[i].originalY = this.stars[i].y;
+        }
+    }
+    
+    createParticles() {
+        this.particles = [];
+        const particleCount = 20;
+        
+        for (let i = 0; i < particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                radius: Math.random() * 3 + 1,
+                color: `hsl(${Math.random() * 60 + 200}, 70%, 60%)`,
+                velocityX: (Math.random() - 0.5) * 0.5,
+                velocityY: (Math.random() - 0.5) * 0.5,
+                opacity: Math.random() * 0.5 + 0.3,
+                pulse: Math.random() * 0.02 + 0.01
+            });
+        }
+    }
+    
+    bindEvents() {
+        window.addEventListener('resize', () => {
+            this.resize();
+            this.createStars();
+            this.createParticles();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            this.mouse.x = e.clientX;
+            this.mouse.y = e.clientY;
+        });
+    }
+    
+    animate() {
+        this.ctx.fillStyle = 'rgba(12, 12, 30, 0.1)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.animateStars();
+        this.animateParticles();
+        this.drawConnections();
+        
+        requestAnimationFrame(() => this.animate());
+    }
+    
+    animateStars() {
+        const centerX = this.canvas.width / 2;
+        const centerY = this.canvas.height / 2;
+        
+        this.stars.forEach(star => {
+            // Mouse attraction effect
+            const mouseDistanceX = this.mouse.x - star.originalX;
+            const mouseDistanceY = this.mouse.y - star.originalY;
+            const mouseDistance = Math.sqrt(mouseDistanceX * mouseDistanceX + mouseDistanceY * mouseDistanceY);
+            
+            if (mouseDistance < 200) {
+                const force = (200 - mouseDistance) / 200;
+                star.x = star.originalX + mouseDistanceX * force * 0.1;
+                star.y = star.originalY + mouseDistanceY * force * 0.1;
+            } else {
+                // Return to original position
+                star.x += (star.originalX - star.x) * 0.02;
+                star.y += (star.originalY - star.y) * 0.02;
+            }
+            
+            // Twinkling effect
+            star.opacity += Math.sin(Date.now() * star.twinkle) * 0.1;
+            star.opacity = Math.max(0.1, Math.min(1, star.opacity));
+            
+            // Draw star
+            this.ctx.beginPath();
+            this.ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+            this.ctx.fill();
+            
+            // Add glow effect for larger stars
+            if (star.radius > 1.5) {
+                this.ctx.beginPath();
+                this.ctx.arc(star.x, star.y, star.radius * 2, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * 0.2})`;
+                this.ctx.fill();
+            }
+        });
+    }
+    
+    animateParticles() {
+        this.particles.forEach(particle => {
+            // Update position
+            particle.x += particle.velocityX;
+            particle.y += particle.velocityY;
+            
+            // Wrap around edges
+            if (particle.x < 0) particle.x = this.canvas.width;
+            if (particle.x > this.canvas.width) particle.x = 0;
+            if (particle.y < 0) particle.y = this.canvas.height;
+            if (particle.y > this.canvas.height) particle.y = 0;
+            
+            // Mouse interaction
+            const mouseDistanceX = this.mouse.x - particle.x;
+            const mouseDistanceY = this.mouse.y - particle.y;
+            const mouseDistance = Math.sqrt(mouseDistanceX * mouseDistanceX + mouseDistanceY * mouseDistanceY);
+            
+            if (mouseDistance < 150) {
+                const force = (150 - mouseDistance) / 150;
+                particle.x -= mouseDistanceX * force * 0.01;
+                particle.y -= mouseDistanceY * force * 0.01;
+            }
+            
+            // Pulsing effect
+            particle.opacity += Math.sin(Date.now() * particle.pulse) * 0.1;
+            particle.opacity = Math.max(0.1, Math.min(0.8, particle.opacity));
+            
+            // Draw particle
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = particle.color.replace('60%)', `${particle.opacity * 60}%)`);
+            this.ctx.fill();
+            
+            // Add glow
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.radius * 3, 0, Math.PI * 2);
+            this.ctx.fillStyle = particle.color.replace('60%)', `${particle.opacity * 10}%)`);
+            this.ctx.fill();
+        });
+    }
+    
+    drawConnections() {
+        // Draw connections between nearby particles and stars
+        for (let i = 0; i < this.particles.length; i++) {
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[i].x - this.particles[j].x;
+                const dy = this.particles[i].y - this.particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const opacity = (100 - distance) / 100 * 0.3;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.strokeStyle = `rgba(100, 150, 255, ${opacity})`;
+                    this.ctx.lineWidth = 0.5;
+                    this.ctx.stroke();
+                }
+            }
+        }
+        
+        // Mouse connection effect
+        this.particles.forEach(particle => {
+            const dx = this.mouse.x - particle.x;
+            const dy = this.mouse.y - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 120) {
+                const opacity = (120 - distance) / 120 * 0.5;
+                this.ctx.beginPath();
+                this.ctx.moveTo(particle.x, particle.y);
+                this.ctx.lineTo(this.mouse.x, this.mouse.y);
+                this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                this.ctx.lineWidth = 1;
+                this.ctx.stroke();
+            }
+        });
+    }
+}
+
+// Initialize the space effect when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new SpaceMouseEffect();
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#features').wowBook({
+            height : 650,
+            width  : 1000,
+            centeredWhenClosed : true,
+            hardcovers : true,
+            turnPageDuration : 1000,
+            numberedPages : [1,-2],
+            controls : {
+                zoomIn    : '#zoomin',
+                zoomOut   : '#zoomout',
+                next      : '#next',
+                back      : '#back',
+                first     : '#first',
+                last      : '#last',
+                slideShow : '#slideshow',
+                flipSound : '#flipsound',
+                thumbnails : '#thumbs',
+                fullscreen : '#fullscreen'
+            },
+            scaleToFit: "#container",
+            thumbnailsPosition : 'bottom',
+            onFullscreenError : function(){
+                var msg="Fullscreen failed.";
+                if (self!=top) msg="The frame is blocking full screen mode. Click on 'remove frame' button above and try to go full screen again."
+                alert(msg);
+            }
+        }).css({'display':'none', 'margin':'auto'}).fadeIn(1000);
+
+        $("#cover").click(function(){
+            $.wowBook("#features").advance();
+        });
+
+        var book = $.wowBook("#features");
+
+        // Table of Contents Navigation
+        $('.toc-link').on('click', function(e) {
+            e.preventDefault();
+            var targetPage = parseInt($(this).data('page'));
+            book.gotoPage(targetPage);
+        });
+
+        function rebuildThumbnails(){
+            book.destroyThumbnails()
+            book.showThumbnails()
+            $("#thumbs_holder").css("marginTop", -$("#thumbs_holder").height()/2)
+        }
+        $("#thumbs_position button").on("click", function(){
+            var position = $(this).text().toLowerCase()
+            if ($(this).data("customized")) {
+                position = "top"
+                book.opts.thumbnailsParent = "#thumbs_holder";
+            } else {
+                book.opts.thumbnailsParent = "body";
+            }
+            book.opts.thumbnailsPosition = position
+            rebuildThumbnails();
+        })
+        $("#thumb_automatic").click(function(){
+            book.opts.thumbnailsSprite = null
+            book.opts.thumbnailWidth = null
+            rebuildThumbnails();
+        })
+        $("#thumb_sprite").click(function(){
+            book.opts.thumbnailsSprite = "images/thumbs.jpg"
+            book.opts.thumbnailWidth = 136
+            rebuildThumbnails();
+        })
+        $("#thumbs_size button").click(function(){
+            var factor = 0.02*( $(this).index() ? -1 : 1 );
+            book.opts.thumbnailScale = book.opts.thumbnailScale + factor;
+            rebuildThumbnails();
+        })
+
+    });
+</script>
+
+<!-- scripts concatenated and minified via ant build script-->
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+<!-- end concatenated and minified scripts-->
+
+<!--[if lt IE 7 ]>
+<script src="js/dd_belatedpng.js"></script>
+<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+<![endif]-->
+
+</body>
+</html>
